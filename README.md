@@ -1,6 +1,6 @@
 # Machine Learning Pipeline for Pairs Trading
 
-This repository contains the code for the paper *"Machine Learning Pipeline for Pairs Trading"*. It uses a pipeline developed to identify mean reverting ETF pairs, utilizes machine learning models to reliably backtest these pairs and evaluate performance, and analyzes whether mean reverting relationships in ETFs reliably propagate to their individual stock holdings. 
+This repository contains the code for the paper *"Machine Learning Pipeline for Pairs Trading"*. It uses a pipeline developed to identify cointegrated ETF pairs, utilizes machine learning models to reliably backtest these pairs and evaluate performance, and analyzes whether mean reverting relationships in ETFs reliably propagate to their individual stock holdings. 
 
 This repository is intended for transparency, and is not feasibly executable with a single command under a time constraint.
 
