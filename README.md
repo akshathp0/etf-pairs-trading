@@ -24,9 +24,9 @@ Only assets with appropriate historical data were retained for this project.
 
 ---
 ## Reproducibility:
-- This code does not have one-click reproducibility.
+- This code does not have one-click reproducibility
 - Full execution of this code requires significant computational cost, and rerunning the pipeline to reproduce results is not expected
-- All figures and tables reported are in the code as is, and clicking on the individual notebooks to view results is sufficient
+- All figures and tables reported are in the code as is, and clicking on the individual notebooks to view results is sufficient. Results may vary slightly in the current notebooks due to floating point non-determinism
 - This repository prioritizes code transparency rather than code runnability
 - Please do not attempt to rerun pair_searching/etf_searching.ipynb/
 - Results of hedge-ratio-based position sizing in the ETF-level simulation can be viewed on a per-model basis in each notebook in the pair_trading/models/ section
