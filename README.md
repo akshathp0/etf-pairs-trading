@@ -20,17 +20,17 @@ The core finding: **the ML pair-selection pipeline does not significantly improv
 
 Starting from 916 U.S. equity ETFs, filters were applied to produce a universe of 62 ETFs:
 
-- **Time filter:** Must exist since January 1, 2015 (10-year window)
-- **Volume filter:** Average daily volume > 500,000 shares
-- **Price filter:** Average closing price > $10
+- Time filter: Must exist since January 1, 2015 (10-year window)
+- Volume filter: Average daily volume > 500,000 shares
+- Price filter: Average closing price > $10
 
 ### 2. Pair Selection Pipeline
 
 Using training data only (Jan 2015 – Dec 2019):
 
-1. **Rolling cointegration:** Augmented Engle-Granger test with 252-day windows and 21-day steps. Pairs retained if >40% of windows show significant cointegration (p < 0.10).
-2. **Correlation filter:** Pairs with both 60-day and 252-day rolling correlations below 0.98 are retained, removing near-identical ETFs.
-3. **PCA + K-means clustering:** PCA with 2 components fit to scaled returns. K-means with silhouette-optimized cluster count (k = 2). Only pairs within the same cluster are kept.
+1. Rolling cointegration: Augmented Engle-Granger test with 252-day windows and 21-day steps. Pairs retained if >40% of windows show significant cointegration (p < 0.10).
+2. Correlation filter: Pairs with both 60-day and 252-day rolling correlations below 0.98 are retained, removing near-identical ETFs.
+3. PCA + K-means clustering: PCA with 2 components fit to scaled returns. K-means with silhouette-optimized cluster count (k = 2). Only pairs within the same cluster are kept.
 
 **Result:** 15 ETF pairs selected for model development.
 
@@ -70,18 +70,18 @@ The frozen XGBoost model was applied to stock pairs formed by pairing the top 3 
 
 ### Key Takeaways
 
-- **Trade execution, not pair selection, is where ML adds value.** The XGBoost model drove profitability across both pipeline-selected and random stock pairs.
-- **ETF-level cointegration does not reliably propagate to constituent stocks.** ETF cointegration likely reflects shared factor exposure and diversification dynamics rather than stock-level mean reversion.
-- **ETF decomposition yields a non-trivial proportion of tradable stock pairs** (~18% aggregate), but the ML pipeline does not significantly improve that proportion over random selection.
-- **Evaluating ML in pairs trading requires separating pair discovery from trade execution.** Conflating the two can produce misleading conclusions about ML effectiveness.
+- Trade execution, not pair selection, is where ML adds value. The XGBoost model drove profitability across both pipeline-selected and random stock pairs.
+- ETF-level cointegration does not reliably propagate to constituent stocks. ETF cointegration likely reflects shared factor exposure and diversification dynamics rather than stock-level mean reversion.
+- ETF decomposition yields a non-trivial proportion of tradable stock pairs (~18% aggregate), but the ML pipeline does not significantly improve that proportion over random selection.
+- Evaluating ML in pairs trading requires separating pair discovery from trade execution. Conflating the two can produce misleading conclusions about ML effectiveness.
 
 ---
 
 ## Data
 
-- **Source:** Yahoo Finance (yfinance library)
-- **Assets:** U.S. equity ETFs and corresponding top stock holdings
-- **Train/Test Split:**
+- Source: Yahoo Finance (yfinance library)
+- Assets: U.S. equity ETFs and corresponding top stock holdings
+- Train/Test Split:
   - Train: January 1, 2015 – January 1, 2020
   - Test: January 2, 2020 – December 31, 2024
 
@@ -113,12 +113,12 @@ conda env create -f environment.yml
 
 ## Limitations & Future Work
 
-- **Transaction costs:** Slippage and other execution frictions beyond commission estimates are not modeled
-- **Fixed holding period:** Dynamic exit upon mean reversion (rather than fixed 10-day horizon) could better capture convergence timing
-- **ETF decomposition depth:** Using more than the top 3 holdings with individual weights may better represent ETF-level price movements
-- **Model diversity:** Convolutional transformers or other architectures could be explored for trade execution
-- **Pair selection alternatives:** Training ML models to directly rank or score pairs, bypassing statistical filters, may better isolate ML's pair-selection value
-- **Sentiment features:** Market sentiment data (e.g., VIX) could improve signal quality
+- Transaction costs: Slippage and other execution frictions beyond commission estimates are not modeled
+- Fixed holding period: Dynamic exit upon mean reversion (rather than fixed 10-day horizon) could better capture convergence timing
+- ETF decomposition depth: Using more than the top 3 holdings with individual weights may better represent ETF-level price movements
+- Model diversity: Convolutional transformers or other architectures could be explored for trade execution
+- Pair selection alternatives: Training ML models to directly rank or score pairs, bypassing statistical filters, may better isolate ML's pair-selection value
+- Sentiment features: Market sentiment data (e.g., VIX) could improve signal quality
 
 ---
 
