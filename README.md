@@ -106,7 +106,7 @@ Only assets with sufficient historical data were retained.
 ```bash
 git clone https://github.com/akshathp0/etf-pairs-trading.git
 cd etf-pairs-trading
-pip install -r environment.yml
+conda env create -f environment.yml
 ```
 
 ---
